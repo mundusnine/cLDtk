@@ -18,6 +18,7 @@
     //----------------------------------------------------------------
     extern JSON_Array *tilesets_array ; 
     extern struct tilesets{
+        int count;
         const char *identifier;
         int uid;
         const char *relPath;
@@ -143,6 +144,13 @@
         int size;
     } fieldInstances_strings;
 
+    extern struct fieldInstances_tiles{
+        int tilesetUid;
+        int x,y,w,h;
+        signed char check; //Cheat check to handle NULL values until I find a better way
+        int size;
+    } fieldInstances_tiles;
+
 
     extern struct fieldInstances{
         const char *identifier;
@@ -151,6 +159,7 @@
         struct fieldInstances_floats *fieldInstances_floats_ptr;
         struct fieldInstances_ints *fieldInstances_ints_ptr;
         struct fieldInstances_strings *fieldInstances_strings_ptr;
+        struct fieldInstances_tiles *fieldInstances_tiles_ptr;
         int defUid;
         int size;
     } fieldInstances,*fieldInstances_details_ptr, *fieldInstances_points_ptr, *fieldInstances_floats_ptr, *fieldInstances_ints_ptr,*fieldInstances_strings_ptr;
@@ -260,6 +269,7 @@
     static const char *fieldInstance_array_point __attribute__((unused)) = "Array<Point>";
     static const char *fieldInstance_array_color __attribute__((unused)) = "Array<Color>";
     static const char *fieldInstance_array_filePath __attribute__((unused)) = "Array<FilePath>";
+    static const char *fieldInstance_array_tile __attribute__((unused)) = "Array<Tile>";
     
     
 
@@ -285,6 +295,7 @@ struct levels* getLevel(char* levelName);
 struct levels* getLevelFromUid(int levelId);
 struct entityInstances* getEntity(char* entityName,int levelId);
 struct layerInstances* getLayer(char* layerName,int levelId);
+void getLayers(int levelUId,struct layerInstances** out,int* len);
 void loadJSONFile(char* fileSchema,char* fileName);
 void importMapData(void);
 void freeMapData(void);
