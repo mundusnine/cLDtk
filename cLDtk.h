@@ -293,6 +293,8 @@ void importLevelsData(void);
 void freeLevelsData(void);
 struct levels* getLevel(char* levelName);
 struct levels* getLevelFromUid(int levelId);
+void getLevelNames(char** name_arr,int* len);
+struct tilesets* getTilesets(int* out_len);
 struct entityInstances* getEntity(char* entityName,int levelId);
 struct layerInstances* getLayer(char* layerName,int levelId);
 void getLayers(int levelUId,struct layerInstances** out,int* len);

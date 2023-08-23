@@ -876,6 +876,17 @@ struct levels* getLevel(char* levelName){
     }
     return(ptr_le);
 }
+void getLevelNames(char** name_arr,int* len){
+    levels_array = json_object_get_array(json_object(user_data), "levels");
+    assert(*len >= json_array_get_count(levels_array));
+    int i=0;
+    for(;i<json_array_get_count(levels_array);i++){
+                          
+        name_arr[i] =levels_data_ptr->levels_data_ptr[i].identifier;
+        
+    }
+    *len = i;
+}
 
 int getIdFromUid(int levelUId){
     int id = 0;
@@ -909,6 +920,11 @@ struct levels* getLevelFromUid(int levelId){
         
     }
     return(ptr_le);
+}
+
+struct tilesets* getTilesets(int* out_len){
+    *out_len = levels.tilesets_data_ptr->count;
+    return levels.tilesets_data_ptr;
 }
 
 //return entity as struct
