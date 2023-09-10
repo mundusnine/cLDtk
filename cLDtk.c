@@ -267,18 +267,18 @@ void importLevelsData(void){
                     levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr = malloc(sizeof(struct fieldInstances) * fieldInstanceCount);
 
                     if(obj != NULL){
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].identifier = "default_tile";
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].type = "Tile";
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].size = 1;
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].fieldInstances_tiles_ptr = malloc(sizeof(struct fieldInstances_tiles) * 1);
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].fieldInstances_tiles_ptr[0].tilesetUid = json_object_get_number( obj, "tilesetUid");
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].fieldInstances_tiles_ptr[0].x = json_object_get_number( obj, "x");
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].fieldInstances_tiles_ptr[0].y = json_object_get_number( obj, "y");
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].fieldInstances_tiles_ptr[0].w = json_object_get_number( obj, "w");
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].fieldInstances_tiles_ptr[0].h = json_object_get_number( obj, "h");
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].identifier = "default_tile";
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].type = "Tile";
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].size = 1;
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].fieldInstances_tiles_ptr = malloc(sizeof(struct fieldInstances_tiles) * 1);
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].fieldInstances_tiles_ptr[0].tilesetUid = json_object_get_number( obj, "tilesetUid");
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].fieldInstances_tiles_ptr[0].x = json_object_get_number( obj, "x");
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].fieldInstances_tiles_ptr[0].y = json_object_get_number( obj, "y");
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].fieldInstances_tiles_ptr[0].w = json_object_get_number( obj, "w");
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].fieldInstances_tiles_ptr[0].h = json_object_get_number( obj, "h");
 
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].fieldInstances_tiles_ptr[0].check = 1;
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[0].fieldInstances_tiles_ptr[0].size = 1;
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].fieldInstances_tiles_ptr[0].check = 1;
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[fieldInstanceCount-1].fieldInstances_tiles_ptr[0].size = 1;
                     }
 
                     if(json_array_get_count(levels_layerInstances_entityInstances_fieldInstances) != 0){
@@ -289,14 +289,14 @@ void importLevelsData(void){
                         levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstanceCount = start;
                     }
             
-                    for(int p=start;p<json_array_get_count(levels_layerInstances_entityInstances_fieldInstances);p++){
+                    for(int p=0;p<json_array_get_count(levels_layerInstances_entityInstances_fieldInstances);p++){
                       
                       
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].identifier =json_object_get_string( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__identifier");
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].identifier =json_object_get_string( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__identifier");
 
 
                         //Get type for item value if it is an array type
-                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type =json_object_get_string( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__type");
+                        levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type =json_object_get_string( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__type");
 
                         
                         //
@@ -310,7 +310,7 @@ void importLevelsData(void){
                         
                         if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_array_point) == 0){
                             
-                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
 
                             //Check for empty arrays
                             if(json_array_get_count(levels_layerInstances_entityInstances_fieldInstances_value) != 0){                                
@@ -342,7 +342,7 @@ void importLevelsData(void){
                         }
                         else if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_array_tile) == 0){
                             
-                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
 
                             //Check for empty arrays
                             if(json_array_get_count(levels_layerInstances_entityInstances_fieldInstances_value) != 0){                                
@@ -376,12 +376,12 @@ void importLevelsData(void){
                         else if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_point) == 0){
                             
                             
-                            if(json_object_get_object( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value") == NULL){
+                            if(json_object_get_object( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value") == NULL){
                                 levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].size  = 0;
                                 
                             }
                             else{   
-                                levels_layerInstances_entityInstances_fieldInstances_object =json_object_get_object( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                                levels_layerInstances_entityInstances_fieldInstances_object =json_object_get_object( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
                                     
                                 levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_points_ptr = malloc(sizeof(struct fieldInstances_points) );
                                 
@@ -403,14 +403,14 @@ void importLevelsData(void){
                                 strncmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_localEnum,9) == 0 ){
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_strings_ptr = malloc(sizeof(struct fieldInstances_strings));
 
-                            levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_strings_ptr->strValue =json_object_get_string( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_strings_ptr->strValue =json_object_get_string( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_strings_ptr->check = 1;
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_strings_ptr->size = 1;
 							levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].size  = 1;																																					  
                         }
                         if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_array_int) == 0){
                             
-                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
 
                             //Check for empty arrays
                             if(json_array_get_count(levels_layerInstances_entityInstances_fieldInstances_value) != 0){
@@ -436,7 +436,7 @@ void importLevelsData(void){
                         }
                         if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_array_float) == 0){
                             
-                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
 
                             //Check for empty arrays
                             if(json_array_get_count(levels_layerInstances_entityInstances_fieldInstances_value) != 0){
@@ -465,7 +465,7 @@ void importLevelsData(void){
                         }
                         if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_array_boolean) == 0){
                             
-                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
 
                             //Check for empty arrays
                             if(json_array_get_count(levels_layerInstances_entityInstances_fieldInstances_value) != 0){
@@ -490,7 +490,7 @@ void importLevelsData(void){
                         else if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_integer) == 0 ){
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr = malloc(sizeof(struct fieldInstances_ints));
 
-                            levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr->intValue =json_object_get_number( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr->intValue =json_object_get_number( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr->check = 1;
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr->size = 1;
 							levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].size  = 1;																																					  
@@ -498,7 +498,7 @@ void importLevelsData(void){
                         else if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_boolean) == 0 ){
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr = malloc(sizeof(struct fieldInstances_ints));
 
-                            levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr->intValue =json_object_get_boolean( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr->intValue =json_object_get_boolean( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr->check = 1;
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_ints_ptr->size = 1;
 							levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].size  = 1;																																					  
@@ -506,7 +506,7 @@ void importLevelsData(void){
                         else if(strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_float) == 0 ){
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_floats_ptr = malloc(sizeof(struct fieldInstances_floats));
 
-                            levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_floats_ptr->floatValue =json_object_get_number( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_floats_ptr->floatValue =json_object_get_number( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_floats_ptr->check = 1;
                             levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].fieldInstances_floats_ptr->size = 1;
 							levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].size  = 1;																																					  
@@ -516,7 +516,7 @@ void importLevelsData(void){
                         strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_array_string) == 0 ||
                         strcmp(levels_data_ptr->levels_data_ptr[i].layers_data_ptr[g].entityInstances_data_ptr[y].fieldInstances_data_ptr[p].type,fieldInstance_array_color) == 0){
                             
-                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p-1), "__value");
+                            levels_layerInstances_entityInstances_fieldInstances_value =json_object_get_array( json_array_get_object(levels_layerInstances_entityInstances_fieldInstances, p), "__value");
 
                             //Check for empty arrays
                             if(json_array_get_count(levels_layerInstances_entityInstances_fieldInstances_value) != 0){
@@ -870,11 +870,12 @@ struct levels* getLevel(char* levelName){
         if(strcmp(levels_data_ptr->levels_data_ptr[i].identifier,levelName)==0){
                     
             ptr_le = &levels_data_ptr->levels_data_ptr[i];
+            break;
             
         }    
         
     }
-    return(ptr_le);
+    return ptr_le;
 }
 void getLevelNames(char** name_arr,int* len){
     levels_array = json_object_get_array(json_object(user_data), "levels");

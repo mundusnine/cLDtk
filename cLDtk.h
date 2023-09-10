@@ -250,26 +250,33 @@
         struct levels *levels_data_ptr; 
     } file_detail,*file_details_ptr,*levels_data_ptr;
 
+#ifdef _WIN32
+#define UNUSED(x) x
+#else
+#define UNUSED(x) x __attribute__((unused))
+#endif // 
+
+
     //Used for strcmp
     //single value checks
-    static const char *fieldInstance_integer __attribute__((unused)) = "Int";
-    static const char *fieldInstance_float __attribute__((unused)) = "Float";
-    static const char *fieldInstance_boolean __attribute__((unused)) = "Bool";
-    static const char *fieldInstance_string __attribute__((unused)) = "String";
-    static const char *fieldInstance_localEnum __attribute__((unused)) = "LocalEnum"; //9 chars
-    static const char *fieldInstance_color __attribute__((unused)) = "Color";
-    static const char *fieldInstance_point __attribute__((unused)) = "Point";
-    static const char *fieldInstance_filePath __attribute__((unused)) = "FilePath";
+    static const char * UNUSED(fieldInstance_integer) = "Int";
+    static const char * UNUSED(fieldInstance_float) = "Float";
+    static const char * UNUSED(fieldInstance_boolean) = "Bool";
+    static const char * UNUSED(fieldInstance_string) = "String";
+    static const char * UNUSED(fieldInstance_localEnum) = "LocalEnum"; //9 chars
+    static const char * UNUSED(fieldInstance_color) = "Color";
+    static const char * UNUSED(fieldInstance_point) = "Point";
+    static const char * UNUSED(fieldInstance_filePath) = "FilePath";
     //array value checks
-    static const char *fieldInstance_array_int __attribute__((unused)) = "Array<Int>";
-    static const char *fieldInstance_array_float __attribute__((unused)) = "Array<Float>";
-    static const char *fieldInstance_array_boolean __attribute__((unused)) = "Array<Bool>";
-    static const char *fieldInstance_array_string __attribute__((unused)) = "Array<String>";
-    static const char *fieldInstance_array_localEnum __attribute__((unused)) = "Array<LocalEnum"; //15 chars
-    static const char *fieldInstance_array_point __attribute__((unused)) = "Array<Point>";
-    static const char *fieldInstance_array_color __attribute__((unused)) = "Array<Color>";
-    static const char *fieldInstance_array_filePath __attribute__((unused)) = "Array<FilePath>";
-    static const char *fieldInstance_array_tile __attribute__((unused)) = "Array<Tile>";
+    static const char * UNUSED(fieldInstance_array_int) = "Array<Int>";
+    static const char * UNUSED(fieldInstance_array_float) = "Array<Float>";
+    static const char * UNUSED(fieldInstance_array_boolean) = "Array<Bool>";
+    static const char * UNUSED(fieldInstance_array_string) = "Array<String>";
+    static const char * UNUSED(fieldInstance_array_localEnum) = "Array<LocalEnum"; //15 chars
+    static const char * UNUSED(fieldInstance_array_point) = "Array<Point>";
+    static const char * UNUSED(fieldInstance_array_color) = "Array<Color>";
+    static const char * UNUSED(fieldInstance_array_filePath) = "Array<FilePath>";
+    static const char * UNUSED(fieldInstance_array_tile) = "Array<Tile>";
     
     
 
