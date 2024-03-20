@@ -883,7 +883,7 @@ void getLevelNames(char** name_arr,int* len){
     int i=0;
     for(;i<json_array_get_count(levels_array);i++){
                           
-        name_arr[i] =levels_data_ptr->levels_data_ptr[i].identifier;
+        name_arr[i] = (char*)levels_data_ptr->levels_data_ptr[i].identifier;
         
     }
     *len = i;

@@ -290,6 +290,9 @@
 //----------------------------------------------------------------
 //    *** ALL PRINT FUNCTIONS MUST BE CALLED AFTER DATA HAS BEEN LOADED ***
 //----------------------------------------------------------------
+#ifdef __cplusplus
+extern "C"{
+#endif
 
 void importFileSpecs(void);
 void importTilesetData(void);
@@ -308,3 +311,7 @@ void getLayers(int levelUId,struct layerInstances** out,int* len);
 void loadJSONFile(char* fileSchema,char* fileName);
 void importMapData(void);
 void freeMapData(void);
+
+#ifdef __cplusplus
+}
+#endif
